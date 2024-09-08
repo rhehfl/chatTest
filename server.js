@@ -37,7 +37,6 @@ io.on('connection', (client) => {
 });
 app.get('/message', (_, res) => res.send('Hello from express!'));
 
-// ViteExpress.listen(app, 3000, () => console.log('3000번 포트에서 대기중'))
 httpServer.listen(3000, () => {
   console.log('3000번 포트에서 실행 중입니다.');
 });
