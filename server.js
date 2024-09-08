@@ -21,9 +21,18 @@ io.on('connection', (client) => {
   client.on('new message', (data) => {
     console.log(`보낸 유저 ${data.userName}`);
     console.log(data.userInput);
+    io.emit('new message', {
+      userName: data.userName,
+      message: data.userInput,
+    });
   });
+
   client.on('disconnect', () => {
     console.log(`${connectedClientUserName}님이 나갔습니다.`);
+    io.emit('new message', {
+      userName: '관리자',
+      message: `${connectedClientUserName}님이 나갔습니다.`,
+    });
   });
 });
 app.get('/message', (_, res) => res.send('Hello from express!'));
